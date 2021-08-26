@@ -12,6 +12,4 @@ struct Article: Codable {
     let title, description: String
     let url: String
     let urlToImage: String
-    
-//    enum CodingK
 }
