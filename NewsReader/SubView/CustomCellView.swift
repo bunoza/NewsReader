@@ -4,11 +4,9 @@
 //
 //  Created by Domagoj Bunoza on 25.08.2021..
 //
-
 import UIKit
 
 class CustomCellView: UITableViewCell {
-    
     
     let image : UIImageView = {
         let image = UIImageView()
@@ -27,14 +25,14 @@ class CustomCellView: UITableViewCell {
         let stackview = UIStackView()
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .horizontal
-        stackview.distribution = .fillProportionally
-        stackview.spacing = 10
+        stackview.distribution = .fillEqually
+        stackview.alignment = .leading
+        stackview.spacing = 5
         return stackview
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = UIColor.white
         stackview.addArrangedSubview(image)
         stackview.addArrangedSubview(title)
         contentView.addSubview(stackview)
@@ -53,11 +51,10 @@ class CustomCellView: UITableViewCell {
     func setupConstraints(){
         NSLayoutConstraint.activate([
            stackview.topAnchor.constraint(equalTo: contentView.topAnchor),
-           stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+           stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
            stackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-           stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            stackview.heightAnchor.constraint(equalToConstant: 80),
-            image.widthAnchor.constraint(equalToConstant: 80),
+           stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackview.heightAnchor.constraint(equalToConstant: 90),
         ])
     }
 }
