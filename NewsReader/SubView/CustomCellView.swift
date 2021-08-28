@@ -54,7 +54,7 @@ class CustomCellView: UITableViewCell {
            stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
            stackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
            stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackview.heightAnchor.constraint(equalToConstant: 90),
+            stackview.heightAnchor.constraint(equalToConstant: 80),
         ])
     }
 }

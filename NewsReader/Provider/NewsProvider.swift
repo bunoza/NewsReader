@@ -10,7 +10,7 @@ class NewsProvider {
     
     var controller : ViewController? = nil
     
-    let url = URL(string: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=1862d59c0f704a7aa99b72f9d6763145")
+    let url = URL(string: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=a1b06087c5f946a8870dcce4593ab1c5")
     
     func setController(controller : ViewController) {
         self.controller = controller

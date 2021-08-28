@@ -42,12 +42,9 @@ class ArticleViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureBackButton(title: "News reader")
         setupViews()
         setupConstraints()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = scrollView.frame.size
     }
     
     func setupViews() {
@@ -61,10 +58,8 @@ class ArticleViewController : UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            articleStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            articleStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10),
-            articleStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
-//            articleStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            articleStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            articleStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
     }
 }

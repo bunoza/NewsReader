@@ -33,8 +33,8 @@ class ArticleStackView: UIView {
         let stackview = UIStackView()
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .vertical
-        stackview.distribution = .fillEqually
-        stackview.alignment = .leading
+        stackview.distribution = .fill
+        stackview.alignment = .firstBaseline
         stackview.spacing = 5
         return stackview
     }()
@@ -72,9 +72,9 @@ class ArticleStackView: UIView {
         NSLayoutConstraint.activate([
             stackview.topAnchor.constraint(equalTo: self.topAnchor),
             stackview.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackview.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            imageview.heightAnchor.constraint(equalToConstant: 150),
+            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            stackview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            imageview.heightAnchor.constraint(equalToConstant: 240),
         ])
     }
 }

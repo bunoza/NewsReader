@@ -14,4 +14,8 @@ extension UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.blue
         self.navigationItem.title = title
     }
+    
+    func configureBackButton(title : String) {
+        self.navigationItem.backBarButtonItem?.title = title
+    }
 }
