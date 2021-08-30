@@ -73,7 +73,7 @@ class ViewController: UIViewController {
     }
     
     func showErrorMessage() {
-        let alert = UIAlertController().getCustomAlert()
+        let alert = getCustomAlert(title: "Error", message: "Oops, an error has occured.", actionTitle: "OK", controller: self)
         self.present(alert, animated: true, completion: nil)
     }
 }

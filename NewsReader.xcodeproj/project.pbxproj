@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C526626F26D915AA00BC5ADF /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */; };
 		C526627126D9160100BC5ADF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526627026D9160100BC5ADF /* LoadingViewController.swift */; };
-		C533B56326DA4F3900EC9F9A /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56226DA4F3900EC9F9A /* UIAlertController+Extensions.swift */; };
 		C533B56526DA568600EC9F9A /* ArticleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56426DA568600EC9F9A /* ArticleStackView.swift */; };
 		C533B56726DA5D6900EC9F9A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56626DA5D6900EC9F9A /* UIViewController+Extensions.swift */; };
 		C568D12226D7D621003F8121 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568D12126D7D621003F8121 /* ArticleViewController.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 		C526627026D9160100BC5ADF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		C533B56226DA4F3900EC9F9A /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		C533B56426DA568600EC9F9A /* ArticleStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStackView.swift; sourceTree = "<group>"; };
 		C533B56626DA5D6900EC9F9A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		C568D12126D7D621003F8121 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			children = (
 				C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */,
 				C5EA370226D6622300485CA8 /* UIImageView+Extensions.swift */,
-				C533B56226DA4F3900EC9F9A /* UIAlertController+Extensions.swift */,
 				C533B56626DA5D6900EC9F9A /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
@@ -215,7 +212,6 @@
 				C568D12226D7D621003F8121 /* ArticleViewController.swift in Sources */,
 				C533B56726DA5D6900EC9F9A /* UIViewController+Extensions.swift in Sources */,
 				C5EA370326D6622300485CA8 /* UIImageView+Extensions.swift in Sources */,
-				C533B56326DA4F3900EC9F9A /* UIAlertController+Extensions.swift in Sources */,
 				C5EA36F826D6349A00485CA8 /* Welcome.swift in Sources */,
 				C526626F26D915AA00BC5ADF /* ViewController+Extensions.swift in Sources */,
 				C5EA36FA26D634CF00485CA8 /* Article.swift in Sources */,

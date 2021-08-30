@@ -18,4 +18,11 @@ extension UIViewController {
     func configureBackButton(title : String) {
         self.navigationItem.backBarButtonItem?.title = title
     }
+    
+    func getCustomAlert(title : String, message : String, actionTitle : String, controller : UIViewController) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: nil)
+        alert.addAction(alertAction)
+        return alert
+    }
 }
