@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C526626F26D915AA00BC5ADF /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */; };
 		C526627126D9160100BC5ADF /* BlurLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526627026D9160100BC5ADF /* BlurLoaderView.swift */; };
 		C533B56526DA568600EC9F9A /* ArticleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56426DA568600EC9F9A /* ArticleStackView.swift */; };
 		C53A6BC626DFA1FD000C4599 /* BlurLoaderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */; };
@@ -25,7 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 		C526627026D9160100BC5ADF /* BlurLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoaderView.swift; sourceTree = "<group>"; };
 		C533B56426DA568600EC9F9A /* ArticleStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStackView.swift; sourceTree = "<group>"; };
 		C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoaderOverlay.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 		C526627526D9229600BC5ADF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */,
 				C5EA370226D6622300485CA8 /* UIImageView+Extensions.swift */,
 				C53A6BC726DFFCDB000C4599 /* UIViewController+Extensions.swift */,
 			);
@@ -216,7 +213,6 @@
 				C53A6BC826DFFCDB000C4599 /* UIViewController+Extensions.swift in Sources */,
 				C5EA370326D6622300485CA8 /* UIImageView+Extensions.swift in Sources */,
 				C5EA36F826D6349A00485CA8 /* Welcome.swift in Sources */,
-				C526626F26D915AA00BC5ADF /* ViewController+Extensions.swift in Sources */,
 				C5EA36FA26D634CF00485CA8 /* Article.swift in Sources */,
 				C5EA36F626D62D6000485CA8 /* NewsProvider.swift in Sources */,
 				C526627126D9160100BC5ADF /* BlurLoaderView.swift in Sources */,

@@ -16,4 +16,13 @@ extension UIViewController {
         viewController.present(alert, animated: true, completion: nil)
     }
     
+    func showOverlay(on viewController : UIViewController) {
+        let blurLoaderOverlay = BlurLoaderOverlay()
+        blurLoaderOverlay.showOverlay(on: viewController)
+    }
+    
+    func dismissOverlay(on viewController : UIViewController) {
+        let blurLoaderOverlay = BlurLoaderOverlay()
+        blurLoaderOverlay.dismissOverlay(on: viewController, flag: false)
+    }
 }
