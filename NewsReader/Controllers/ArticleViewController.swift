@@ -9,8 +9,6 @@ import UIKit
 
 class ArticleViewController : UIViewController {
     
-    
-    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +48,16 @@ class ArticleViewController : UIViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(articleStackView)
+    }
+    
+    func configureTitle(title : String) {
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.init(name: "Avenir Next Condensed Bold", size: 20)!]
+        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+        self.navigationItem.title = title
+    }
+    
+    func configureBackButton(title : String) {
+        self.navigationItem.backBarButtonItem?.title = title
     }
     
     func setupConstraints(){

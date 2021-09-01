@@ -53,12 +53,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self?.dismissOverlay(on: self!)
                         self?.refreshAfter(seconds: 300)
                     }
-                    
                 } else {
                     DispatchQueue.main.async {
                         self?.dismissOverlay(on: self!)
                         self?.refreshAfter(seconds: 300)
-//                        show alert view
+                        self?.showErrorAlert(on: self!)
                     }
                 }
             }
@@ -66,8 +65,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func refreshAfter(seconds : Double) {
-        updateFlag = true
         _ = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: {_ in
+            self.updateFlag = true
             self.getNewsData()
         })
     }
@@ -85,11 +84,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ])
     }
     
-    func showErrorMessage() {
-        let alert = getCustomAlert(title: "Error", message: "Oops, an error has occured.", actionTitle: "OK", controller: self)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     func configureTitle(title : String) {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.init(name: "Avenir Next Condensed Bold", size: 20)!]
         self.navigationController?.navigationBar.barTintColor = UIColor.blue
@@ -98,13 +92,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func configureBackButton(title : String) {
         self.navigationItem.backBarButtonItem?.title = title
-    }
-    
-    func getCustomAlert(title : String, message : String, actionTitle : String, controller : UIViewController) -> UIAlertController {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: nil)
-        alert.addAction(alertAction)
-        return alert
     }
     
     func setupTableView(){
