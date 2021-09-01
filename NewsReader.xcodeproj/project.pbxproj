@@ -99,6 +99,16 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		C5DC8A4126E00B72008A32BC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C526627526D9229600BC5ADF /* Extensions */,
+				C526627026D9160100BC5ADF /* BlurLoaderView.swift */,
+				C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		C5EA36D526D62AA400485CA8 = {
 			isa = PBXGroup;
 			children = (
@@ -118,14 +128,12 @@
 		C5EA36E026D62AA400485CA8 /* NewsReader */ = {
 			isa = PBXGroup;
 			children = (
-				C526627026D9160100BC5ADF /* BlurLoaderView.swift */,
+				C5DC8A4126E00B72008A32BC /* Shared */,
 				C533B55F26DA4A9D00EC9F9A /* Support */,
 				C533B55E26DA4A6E00EC9F9A /* Provider */,
 				C533B55D26DA4A5D00EC9F9A /* SubView */,
-				C526627526D9229600BC5ADF /* Extensions */,
 				C526627426D9227300BC5ADF /* Controllers */,
 				C5EA36FB26D6367000485CA8 /* Model */,
-				C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
