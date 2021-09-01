@@ -15,6 +15,12 @@ class ArticleViewController : UIViewController {
         return scrollView
     }()
     
+    let imageview : UIImageView = {
+        let imageview = UIImageView()
+        imageview.translatesAutoresizingMaskIntoConstraints = false
+        return imageview
+    }()
+    
     let articleStackView: ArticleStackView = {
         let articleStackView = ArticleStackView()
         articleStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +30,7 @@ class ArticleViewController : UIViewController {
     init(article : Article) {
         super.init(nibName: nil, bundle: nil)
         configureTitle(title: article.title)
-        articleStackView.imageview.downloaded(from: article.urlToImage)
+        imageview.downloaded(from: article.urlToImage)
         articleStackView.setTitleText(title: article.title)
         articleStackView.setContentText(text: article.description)
     }
@@ -48,6 +54,7 @@ class ArticleViewController : UIViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(articleStackView)
+        scrollView.addSubview(imageview)
     }
     
     func configureTitle(title : String) {
@@ -66,7 +73,10 @@ class ArticleViewController : UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            articleStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageview.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageview.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageview.heightAnchor.constraint(equalToConstant: 200),
+            articleStackView.topAnchor.constraint(equalTo: imageview.bottomAnchor, constant: 20),
             articleStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
     }
