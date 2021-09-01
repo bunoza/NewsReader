@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
     var articles : [Article] = []
     var updateFlag : Bool = false
@@ -44,19 +44,32 @@ class ViewController: UIViewController {
     func getNewsData() {
         if articles.count == 0 || updateFlag {
             updateFlag = false
-            newsProvider.setController(controller: self)
-            newsProvider.getNews { [weak self] articles in
-                self?.articles = articles
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+            self.showOverlay(on: self)
+            newsProvider.getNews { [weak self] articles,successFlag  in
+                if successFlag {
+                    self?.articles = articles
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                        self?.dismissOverlay(on: self!)
+                        self?.refreshAfter(seconds: 300)
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        self?.dismissOverlay(on: self!)
+                        self?.refreshAfter(seconds: 300)
+//                        show alert view
+                    }
                 }
             }
         }
     }
     
-    @objc func refreshData() {
+    func refreshAfter(seconds : Double) {
         updateFlag = true
-        getNewsData()
+        _ = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: {_ in
+            self.getNewsData()
+        })
     }
 
     func setupViews() {
@@ -76,6 +89,44 @@ class ViewController: UIViewController {
         let alert = getCustomAlert(title: "Error", message: "Oops, an error has occured.", actionTitle: "OK", controller: self)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func configureTitle(title : String) {
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.init(name: "Avenir Next Condensed Bold", size: 20)!]
+        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+        self.navigationItem.title = title
+    }
+    
+    func configureBackButton(title : String) {
+        self.navigationItem.backBarButtonItem?.title = title
+    }
+    
+    func getCustomAlert(title : String, message : String, actionTitle : String, controller : UIViewController) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: nil)
+        alert.addAction(alertAction)
+        return alert
+    }
+    
+    func setupTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CustomCellView.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        let controller = ArticleViewController(article: articles[indexPath.row])
+        controller.modalPresentationStyle = .overCurrentContext
+        controller.transitioningDelegate = self
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return articles.count
+    }
+      
+    @objc(tableView:cellForRowAtIndexPath:) func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell: CustomCellView = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellView
+      cell.configure(with: articles[indexPath.row])
+      return cell
+    }
 }
-
-

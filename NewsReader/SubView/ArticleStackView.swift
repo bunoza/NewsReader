@@ -72,8 +72,8 @@ class ArticleStackView: UIView {
         NSLayoutConstraint.activate([
             stackview.topAnchor.constraint(equalTo: self.topAnchor),
             stackview.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            stackview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackview.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             imageview.heightAnchor.constraint(equalToConstant: 240),
         ])
     }

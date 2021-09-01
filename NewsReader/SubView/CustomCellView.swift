@@ -25,7 +25,7 @@ class CustomCellView: UITableViewCell {
         let stackview = UIStackView()
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .horizontal
-        stackview.distribution = .fillEqually
+        stackview.distribution = .fillProportionally
         stackview.alignment = .leading
         stackview.spacing = 5
         return stackview
@@ -44,17 +44,18 @@ class CustomCellView: UITableViewCell {
     }
     
     func configure(with article: Article) {
-        title.text = article.title
+        title.attributedText = NSAttributedString(string: article.title, attributes: [.font : UIFont.boldSystemFont(ofSize: 17)])
         image.downloaded(from: article.urlToImage)
     }
 
     func setupConstraints(){
         NSLayoutConstraint.activate([
            stackview.topAnchor.constraint(equalTo: contentView.topAnchor),
-           stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+           stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
            stackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
            stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackview.heightAnchor.constraint(equalToConstant: 80),
+            stackview.heightAnchor.constraint(equalToConstant: 100),
+            image.widthAnchor.constraint(equalTo: stackview.heightAnchor)
         ])
     }
 }

@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C526626F26D915AA00BC5ADF /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */; };
-		C526627126D9160100BC5ADF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526627026D9160100BC5ADF /* LoadingViewController.swift */; };
+		C526627126D9160100BC5ADF /* BlurLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526627026D9160100BC5ADF /* BlurLoaderView.swift */; };
 		C533B56526DA568600EC9F9A /* ArticleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56426DA568600EC9F9A /* ArticleStackView.swift */; };
-		C533B56726DA5D6900EC9F9A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56626DA5D6900EC9F9A /* UIViewController+Extensions.swift */; };
+		C53A6BC626DFA1FD000C4599 /* BlurLoaderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */; };
 		C568D12226D7D621003F8121 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568D12126D7D621003F8121 /* ArticleViewController.swift */; };
 		C5EA36E226D62AA400485CA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EA36E126D62AA400485CA8 /* AppDelegate.swift */; };
 		C5EA36E626D62AA400485CA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EA36E526D62AA400485CA8 /* ViewController.swift */; };
@@ -25,9 +25,9 @@
 
 /* Begin PBXFileReference section */
 		C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
-		C526627026D9160100BC5ADF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C526627026D9160100BC5ADF /* BlurLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoaderView.swift; sourceTree = "<group>"; };
 		C533B56426DA568600EC9F9A /* ArticleStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStackView.swift; sourceTree = "<group>"; };
-		C533B56626DA5D6900EC9F9A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoaderOverlay.swift; sourceTree = "<group>"; };
 		C568D12126D7D621003F8121 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		C5EA36DE26D62AA400485CA8 /* NewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EA36E126D62AA400485CA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +56,6 @@
 		C526627426D9227300BC5ADF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C526627026D9160100BC5ADF /* LoadingViewController.swift */,
 				C568D12126D7D621003F8121 /* ArticleViewController.swift */,
 				C5EA36E526D62AA400485CA8 /* ViewController.swift */,
 			);
@@ -68,7 +67,6 @@
 			children = (
 				C526626E26D915AA00BC5ADF /* ViewController+Extensions.swift */,
 				C5EA370226D6622300485CA8 /* UIImageView+Extensions.swift */,
-				C533B56626DA5D6900EC9F9A /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -120,12 +118,14 @@
 		C5EA36E026D62AA400485CA8 /* NewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				C526627026D9160100BC5ADF /* BlurLoaderView.swift */,
 				C533B55F26DA4A9D00EC9F9A /* Support */,
 				C533B55E26DA4A6E00EC9F9A /* Provider */,
 				C533B55D26DA4A5D00EC9F9A /* SubView */,
 				C526627526D9229600BC5ADF /* Extensions */,
 				C526627426D9227300BC5ADF /* Controllers */,
 				C5EA36FB26D6367000485CA8 /* Model */,
+				C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
@@ -210,15 +210,15 @@
 			files = (
 				C5EA36E626D62AA400485CA8 /* ViewController.swift in Sources */,
 				C568D12226D7D621003F8121 /* ArticleViewController.swift in Sources */,
-				C533B56726DA5D6900EC9F9A /* UIViewController+Extensions.swift in Sources */,
 				C5EA370326D6622300485CA8 /* UIImageView+Extensions.swift in Sources */,
 				C5EA36F826D6349A00485CA8 /* Welcome.swift in Sources */,
 				C526626F26D915AA00BC5ADF /* ViewController+Extensions.swift in Sources */,
 				C5EA36FA26D634CF00485CA8 /* Article.swift in Sources */,
 				C5EA36F626D62D6000485CA8 /* NewsProvider.swift in Sources */,
-				C526627126D9160100BC5ADF /* LoadingViewController.swift in Sources */,
+				C526627126D9160100BC5ADF /* BlurLoaderView.swift in Sources */,
 				C5EA370126D6585000485CA8 /* CustomCellView.swift in Sources */,
 				C533B56526DA568600EC9F9A /* ArticleStackView.swift in Sources */,
+				C53A6BC626DFA1FD000C4599 /* BlurLoaderOverlay.swift in Sources */,
 				C5EA36E226D62AA400485CA8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
