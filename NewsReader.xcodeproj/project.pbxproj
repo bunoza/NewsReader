@@ -93,6 +93,7 @@
 		C533B55F26DA4A9D00EC9F9A /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				C5EA36EF26D62AA500485CA8 /* Info.plist */,
 				C5EA36EC26D62AA500485CA8 /* LaunchScreen.storyboard */,
 				C5EA36EA26D62AA500485CA8 /* Assets.xcassets */,
 				C5EA36E126D62AA400485CA8 /* AppDelegate.swift */,
@@ -119,7 +120,6 @@
 		C5EA36E026D62AA400485CA8 /* NewsReader */ = {
 			isa = PBXGroup;
 			children = (
-				C5EA36EF26D62AA500485CA8 /* Info.plist */,
 				C533B55F26DA4A9D00EC9F9A /* Support */,
 				C533B55E26DA4A6E00EC9F9A /* Provider */,
 				C533B55D26DA4A5D00EC9F9A /* SubView */,
@@ -359,7 +359,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NewsReader/Info.plist;
+				INFOPLIST_FILE = NewsReader/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,7 +377,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NewsReader/Info.plist;
+				INFOPLIST_FILE = NewsReader/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
