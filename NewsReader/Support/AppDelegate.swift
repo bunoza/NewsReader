@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) ->Bool{
         
-        let viewController = ViewController()
+        let viewController = ArticleListNewsController()
         let navigationViewController = UINavigationController(rootViewController: viewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)

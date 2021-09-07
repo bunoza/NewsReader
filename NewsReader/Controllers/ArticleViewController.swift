@@ -9,12 +9,24 @@ import UIKit
 
 class ArticleViewController : UIViewController {
     
+    let currentArticle : Article
     
+    let tableView : UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
+    }()
+    
+    let imageview : UIImageView = {
+        let imageview = UIImageView()
+        imageview.translatesAutoresizingMaskIntoConstraints = false
+        return imageview
     }()
     
     let articleStackView: ArticleStackView = {
@@ -24,11 +36,15 @@ class ArticleViewController : UIViewController {
     }()
     
     init(article : Article) {
+        currentArticle = article
         super.init(nibName: nil, bundle: nil)
-        configureTitle(title: article.title)
-        articleStackView.imageview.downloaded(from: article.urlToImage)
-        articleStackView.setTitleText(title: article.title)
-        articleStackView.setContentText(text: article.description)
+    }
+    
+    func setupCurrentArticle() {
+        configureTitle(title: currentArticle.title)
+        imageview.downloaded(from: currentArticle.urlToImage)
+        articleStackView.setTitleText(title: currentArticle.title)
+        articleStackView.setContentText(text: currentArticle.description)
     }
     
     required init?(coder: NSCoder) {
@@ -45,11 +61,23 @@ class ArticleViewController : UIViewController {
         configureBackButton(title: "News reader")
         setupViews()
         setupConstraints()
+        setupCurrentArticle()
     }
     
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(articleStackView)
+        scrollView.addSubview(imageview)
+    }
+    
+    func configureTitle(title : String) {
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.init(name: "Avenir Next Condensed Bold", size: 20)!]
+        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+        self.navigationItem.title = title
+    }
+    
+    func configureBackButton(title : String) {
+        self.navigationItem.backBarButtonItem?.title = title
     }
     
     func setupConstraints(){
@@ -58,7 +86,10 @@ class ArticleViewController : UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            articleStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageview.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageview.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageview.heightAnchor.constraint(equalToConstant: 200),
+            articleStackView.topAnchor.constraint(equalTo: imageview.bottomAnchor, constant: 20),
             articleStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
     }

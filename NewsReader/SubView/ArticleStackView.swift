@@ -9,12 +9,6 @@ import UIKit
 
 class ArticleStackView: UIView {
     
-    let imageview : UIImageView = {
-        let imageview = UIImageView()
-        imageview.translatesAutoresizingMaskIntoConstraints = false
-        return imageview
-    }()
-    
     let articleTitle : UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +28,7 @@ class ArticleStackView: UIView {
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .vertical
         stackview.distribution = .fill
-        stackview.alignment = .firstBaseline
+        stackview.alignment = .leading
         stackview.spacing = 5
         return stackview
     }()
@@ -43,10 +37,6 @@ class ArticleStackView: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
-    }
-    
-    func setImage(image : UIImage) {
-        imageview.image = image
     }
     
     func setTitleText(title : String) {
@@ -62,7 +52,6 @@ class ArticleStackView: UIView {
     }
     
     func setupViews() {
-        stackview.addArrangedSubview(imageview)
         stackview.addArrangedSubview(articleTitle)
         stackview.addArrangedSubview(articleContent)
         self.addSubview(stackview)
@@ -72,9 +61,8 @@ class ArticleStackView: UIView {
         NSLayoutConstraint.activate([
             stackview.topAnchor.constraint(equalTo: self.topAnchor),
             stackview.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20),
             stackview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            imageview.heightAnchor.constraint(equalToConstant: 240),
         ])
     }
 }
