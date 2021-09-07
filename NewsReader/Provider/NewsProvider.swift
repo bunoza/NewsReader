@@ -7,14 +7,16 @@
 import Foundation
 
 class NewsProvider {
+        
+    let url : URL
     
-    var controller : ViewController? = nil
-    
-    let url = URL(string: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=a1b06087c5f946a8870dcce4593ab1c5")
+    init() {
+        url = URL(string: Constants.baseUrl + Constants.apiKey)!
+    }
     
     func getNews(completionHandler: @escaping ([Article], Bool) -> Void) {
         
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
           if let error = error {
             print("Error with fetching films: \(error)")
             completionHandler([], false)

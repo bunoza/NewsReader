@@ -25,16 +25,13 @@ class BlurLoaderOverlay {
             blurLoaderView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
             blurLoaderView.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor)
         ])
-        viewController.view.bringSubviewToFront(blurLoaderView)
     }
     
     func dismissOverlay(on viewController : UIViewController, flag : Bool) {
-        DispatchQueue.main.async {
-            if let viewWithTag = viewController.view.viewWithTag(100) {
-                viewWithTag.removeFromSuperview()
-            }else{
-                print("no view with such tag")
-            }
+        if let viewWithTag = viewController.view.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+        }else{
+            print("no view with such tag")
         }
     }
     

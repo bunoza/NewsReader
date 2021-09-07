@@ -9,6 +9,14 @@ import UIKit
 
 class ArticleViewController : UIViewController {
     
+    let currentArticle : Article
+    
+    let tableView : UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,11 +36,15 @@ class ArticleViewController : UIViewController {
     }()
     
     init(article : Article) {
+        currentArticle = article
         super.init(nibName: nil, bundle: nil)
-        configureTitle(title: article.title)
-        imageview.downloaded(from: article.urlToImage)
-        articleStackView.setTitleText(title: article.title)
-        articleStackView.setContentText(text: article.description)
+    }
+    
+    func setupCurrentArticle() {
+        configureTitle(title: currentArticle.title)
+        imageview.downloaded(from: currentArticle.urlToImage)
+        articleStackView.setTitleText(title: currentArticle.title)
+        articleStackView.setContentText(text: currentArticle.description)
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +61,7 @@ class ArticleViewController : UIViewController {
         configureBackButton(title: "News reader")
         setupViews()
         setupConstraints()
+        setupCurrentArticle()
     }
     
     func setupViews() {

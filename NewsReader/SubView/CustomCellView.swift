@@ -48,7 +48,7 @@ class CustomCellView: UITableViewCell {
         image.downloaded(from: article.urlToImage)
     }
 
-    func setupConstraints(){
+    func setupConstraints() {
         NSLayoutConstraint.activate([
            stackview.topAnchor.constraint(equalTo: contentView.topAnchor),
            stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

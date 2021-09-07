@@ -38,7 +38,15 @@ class BlurLoaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setBackgroundColor()
+        setupViews()
+    }
+    
+    func setBackgroundColor() {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    }
+    
+    func setupViews() {
         blurEffectView.frame = self.bounds
         self.insertSubview(blurEffectView, at: 0)
         loadingActivityIndicator.center = CGPoint(

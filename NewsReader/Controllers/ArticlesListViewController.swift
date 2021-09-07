@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
+class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
-    var articles : [Article] = []
-    var updateFlag : Bool = false
+    var articles : [Article]
+    var updateFlag : Bool
 
     let newsProvider : NewsProvider = {
         let newsProvider = NewsProvider()
@@ -22,7 +22,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-        
+    
+    init() {
+        articles = []
+        updateFlag = false
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         super.loadView()
         view.backgroundColor = .white
@@ -44,7 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getNewsData() {
         if articles.count == 0 || updateFlag {
             updateFlag = false
-            self.showOverlay(on: self)
+            showOverlay(on: self)
             newsProvider.getNews { [weak self] articles,successFlag  in
                 if successFlag {
                     self?.articles = articles
@@ -107,11 +117,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         controller.transitioningDelegate = self
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return articles.count
     }
       
-    @objc(tableView:cellForRowAtIndexPath:) func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell: CustomCellView = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellView
       cell.configure(with: articles[indexPath.row])
       return cell
