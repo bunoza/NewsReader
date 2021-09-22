@@ -25,7 +25,6 @@ class CustomCellView: UITableViewCell {
         let stackview = UIStackView()
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .horizontal
-        stackview.distribution = .fillProportionally
         stackview.alignment = .leading
         stackview.spacing = 5
         return stackview
@@ -54,8 +53,8 @@ class CustomCellView: UITableViewCell {
            stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
            stackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
            stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackview.heightAnchor.constraint(equalToConstant: 100),
-            image.widthAnchor.constraint(equalTo: stackview.heightAnchor)
+            image.heightAnchor.constraint(equalToConstant: 100),
+            image.widthAnchor.constraint(equalTo: image.heightAnchor)
         ])
     }
 }

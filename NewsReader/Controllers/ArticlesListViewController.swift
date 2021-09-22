@@ -9,13 +9,7 @@ import UIKit
 
 class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
-    var articles : [Article]
-    var updateFlag : Bool
-
-    let newsProvider : NewsProvider = {
-        let newsProvider = NewsProvider()
-        return newsProvider
-    }()
+    let viewModel : ArticlesListViewModel
     
     let tableView : UITableView = {
         let tableView = UITableView()
@@ -23,10 +17,45 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
         return tableView
     }()
     
+    let appearance : UINavigationBarAppearance = {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.init(name: "Avenir Next Condensed Bold", size: 20)!]
+        appearance.backgroundColor = UIColor.blue
+        return appearance
+    }()
+    
     init() {
-        articles = []
-        updateFlag = false
+        viewModel = ArticlesListViewModel()
         super.init(nibName: nil, bundle: nil)
+        setupBindings()
+    }
+    
+    func setupBindings(){
+        viewModel.getArticles().bind { _ in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        viewModel.getStatus().bind { _ in
+            DispatchQueue.main.async {
+                self.handleStatus(status: self.viewModel.getStatus().value)
+            }
+        }
+    }
+    
+    func handleStatus(status: Status){
+        switch status {
+        case .Loaded:
+            self.dismissOverlay(on: self)
+        case .Loading:
+            self.showOverlay(on: self)
+        case .Start:
+            return
+        case .Error:
+            self.dismissOverlay(on: self)
+            self.showErrorAlert(on: self)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -45,41 +74,6 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
         setupConstraints()
         setupTableView()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getNewsData()
-    }
-    
-    func getNewsData() {
-        if articles.count == 0 || updateFlag {
-            updateFlag = false
-            showOverlay(on: self)
-            newsProvider.getNews { [weak self] articles,successFlag  in
-                if successFlag {
-                    self?.articles = articles
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                        self?.dismissOverlay(on: self!)
-                        self?.refreshAfter(seconds: 300)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self?.dismissOverlay(on: self!)
-                        self?.refreshAfter(seconds: 300)
-                        self?.showErrorAlert(on: self!)
-                    }
-                }
-            }
-        }
-    }
-    
-    func refreshAfter(seconds : Double) {
-        _ = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: {_ in
-            self.updateFlag = true
-            self.getNewsData()
-        })
-    }
 
     func setupViews() {
         view.addSubview(tableView)
@@ -95,8 +89,8 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func configureTitle(title : String) {
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.init(name: "Avenir Next Condensed Bold", size: 20)!]
-        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+        navigationController?.navigationBar.standardAppearance = appearance;
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationItem.title = title
     }
     
@@ -112,18 +106,18 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        let controller = ArticleViewController(article: articles[indexPath.row])
+        let controller = ArticleViewController(article: viewModel.getArticles().value[indexPath.row])
         controller.modalPresentationStyle = .overCurrentContext
         controller.transitioningDelegate = self
         self.navigationController?.pushViewController(controller, animated: true)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return articles.count
+        return viewModel.getArticles().value.count
     }
       
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell: CustomCellView = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellView
-      cell.configure(with: articles[indexPath.row])
+        cell.configure(with: viewModel.getArticles().value[indexPath.row])
       return cell
     }
 }
