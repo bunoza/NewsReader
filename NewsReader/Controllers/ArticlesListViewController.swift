@@ -25,22 +25,21 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
         return appearance
     }()
     
-    init() {
-        viewModel = ArticlesListViewModel()
+    init(viewModel: ArticlesListViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupBindings()
+        viewModel.getNews()
     }
     
     func setupBindings(){
-        viewModel.getArticles().bind { _ in
+        viewModel.articles.bind { _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
         viewModel.getStatus().bind { _ in
-            DispatchQueue.main.async {
                 self.handleStatus(status: self.viewModel.getStatus().value)
-            }
         }
     }
     
@@ -106,18 +105,18 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        let controller = ArticleViewController(article: viewModel.getArticles().value[indexPath.row])
+        let controller = ArticleViewController(article: viewModel.articles.value[indexPath.row])
         controller.modalPresentationStyle = .overCurrentContext
         controller.transitioningDelegate = self
         self.navigationController?.pushViewController(controller, animated: true)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getArticles().value.count
+        return viewModel.articles.value.count
     }
       
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell: CustomCellView = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellView
-        cell.configure(with: viewModel.getArticles().value[indexPath.row])
+        cell.configure(with: viewModel.articles.value[indexPath.row])
       return cell
     }
 }

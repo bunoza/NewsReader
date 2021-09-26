@@ -16,8 +16,8 @@ enum Status {
 
 class Repository {
     
-    var articles : Observable<[Article]>
     var status : Observable<Status>
+    var articles : Observable<[Article]>
     
     let newsProvider : NewsProvider = {
         let newsProvider = NewsProvider()
@@ -25,18 +25,17 @@ class Repository {
     }()
     
     init(){
-        articles = Observable([])
         status = Observable(.Start)
-        getNewsData()
+        articles = Observable([])
     }
     
-    func getNewsData() {
+    func getNewsData(){
         status.value = .Loading
             newsProvider.getNews { [weak self] articles,successFlag  in
                 if successFlag {
-                    self?.articles.value = articles
                     DispatchQueue.main.async {
                         self?.status.value = .Loaded
+                        self?.articles.value = articles
                         self?.refreshAfter(seconds: 300)
                     }
                 } else {
