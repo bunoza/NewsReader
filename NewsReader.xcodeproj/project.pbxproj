@@ -11,8 +11,11 @@
 		C533B56526DA568600EC9F9A /* ArticleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533B56426DA568600EC9F9A /* ArticleStackView.swift */; };
 		C53A6BC626DFA1FD000C4599 /* BlurLoaderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */; };
 		C53A6BC826DFFCDB000C4599 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A6BC726DFFCDB000C4599 /* UIViewController+Extensions.swift */; };
+		C544396A26FA9A9900484D08 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C544396926FA9A9900484D08 /* Observable.swift */; };
+		C544396C26FAA41B00484D08 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C544396B26FAA41B00484D08 /* Repository.swift */; };
 		C568D12226D7D621003F8121 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568D12126D7D621003F8121 /* ArticleViewController.swift */; };
 		C5806F9F26E76AF400416FCB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5806F9E26E76AF400416FCB /* Constants.swift */; };
+		C59C92C126F66DE7003C90A7 /* ArticlesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C92C026F66DE7003C90A7 /* ArticlesListViewModel.swift */; };
 		C5EA36E226D62AA400485CA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EA36E126D62AA400485CA8 /* AppDelegate.swift */; };
 		C5EA36E626D62AA400485CA8 /* ArticlesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EA36E526D62AA400485CA8 /* ArticlesListViewController.swift */; };
 		C5EA36EB26D62AA500485CA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5EA36EA26D62AA500485CA8 /* Assets.xcassets */; };
@@ -29,8 +32,11 @@
 		C533B56426DA568600EC9F9A /* ArticleStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStackView.swift; sourceTree = "<group>"; };
 		C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurLoaderOverlay.swift; sourceTree = "<group>"; };
 		C53A6BC726DFFCDB000C4599 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		C544396926FA9A9900484D08 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		C544396B26FAA41B00484D08 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		C568D12126D7D621003F8121 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		C5806F9E26E76AF400416FCB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C59C92C026F66DE7003C90A7 /* ArticlesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListViewModel.swift; sourceTree = "<group>"; };
 		C5EA36DE26D62AA400485CA8 /* NewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EA36E126D62AA400485CA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5EA36E526D62AA400485CA8 /* ArticlesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				C5EA36F526D62D6000485CA8 /* NewsProvider.swift */,
+				C544396B26FAA41B00484D08 /* Repository.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -101,6 +108,14 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		C59C92BF26F66DC7003C90A7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C59C92C026F66DE7003C90A7 /* ArticlesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C5DC8A4126E00B72008A32BC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +123,7 @@
 				C526627026D9160100BC5ADF /* BlurLoaderView.swift */,
 				C53A6BC526DFA1FD000C4599 /* BlurLoaderOverlay.swift */,
 				C5806F9E26E76AF400416FCB /* Constants.swift */,
+				C544396926FA9A9900484D08 /* Observable.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -131,6 +147,7 @@
 		C5EA36E026D62AA400485CA8 /* NewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				C59C92BF26F66DC7003C90A7 /* ViewModel */,
 				C5DC8A4126E00B72008A32BC /* Shared */,
 				C533B55F26DA4A9D00EC9F9A /* Support */,
 				C533B55E26DA4A6E00EC9F9A /* Provider */,
@@ -220,14 +237,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5EA36E626D62AA400485CA8 /* ArticlesListViewController.swift in Sources */,
+				C544396A26FA9A9900484D08 /* Observable.swift in Sources */,
 				C568D12226D7D621003F8121 /* ArticleViewController.swift in Sources */,
 				C53A6BC826DFFCDB000C4599 /* UIViewController+Extensions.swift in Sources */,
 				C5EA370326D6622300485CA8 /* UIImageView+Extensions.swift in Sources */,
 				C5EA36F826D6349A00485CA8 /* Welcome.swift in Sources */,
+				C59C92C126F66DE7003C90A7 /* ArticlesListViewModel.swift in Sources */,
 				C5EA36FA26D634CF00485CA8 /* Article.swift in Sources */,
 				C5EA36F626D62D6000485CA8 /* NewsProvider.swift in Sources */,
 				C5806F9F26E76AF400416FCB /* Constants.swift in Sources */,
 				C526627126D9160100BC5ADF /* BlurLoaderView.swift in Sources */,
+				C544396C26FAA41B00484D08 /* Repository.swift in Sources */,
 				C5EA370126D6585000485CA8 /* CustomCellView.swift in Sources */,
 				C533B56526DA568600EC9F9A /* ArticleStackView.swift in Sources */,
 				C53A6BC626DFA1FD000C4599 /* BlurLoaderOverlay.swift in Sources */,
