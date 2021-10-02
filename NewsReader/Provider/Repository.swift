@@ -31,19 +31,19 @@ class Repository {
     
     func getNewsData(){
         status.value = .Loading
-            newsProvider.getNews { [weak self] articles,successFlag  in
-                if successFlag {
-                    DispatchQueue.main.async {
-                        self?.status.value = .Loaded
-                        self?.articles.value = articles
-                        self?.refreshAfter(seconds: 300)
-                    }
-                } else {
-                    DispatchQueue.main.async {
+        newsProvider.getNews { [weak self] articles,successFlag  in
+            if successFlag {
+                DispatchQueue.main.async {
+                    self?.status.value = .Loaded
+                    self?.articles.value = articles
+                    self?.refreshAfter(seconds: 300)
+                }
+            } else {
+                DispatchQueue.main.async {
                     self?.status.value = .Error
-                    }
                 }
             }
+        }
     }
     
     func refreshAfter(seconds : Double) {

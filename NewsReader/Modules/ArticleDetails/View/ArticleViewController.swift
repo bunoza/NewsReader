@@ -42,7 +42,7 @@ class ArticleViewController : UIViewController {
     
     func setupCurrentArticle() {
         configureTitle(title: currentArticle.title)
-        imageview.downloaded(from: currentArticle.urlToImage)
+        imageview.setImageFromUrl(url: currentArticle.urlToImage)
         articleStackView.setTitleText(title: currentArticle.title)
         articleStackView.setContentText(text: currentArticle.description)
     }
@@ -81,16 +81,17 @@ class ArticleViewController : UIViewController {
     }
     
     func setupConstraints(){
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            imageview.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageview.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageview.heightAnchor.constraint(equalToConstant: 200),
-            articleStackView.topAnchor.constraint(equalTo: imageview.bottomAnchor, constant: 20),
-            articleStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        ])
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        imageview.snp.makeConstraints { make in
+            make.height.equalTo(200)
+            make.width.equalToSuperview()
+        }
+        articleStackView.snp.makeConstraints { make in
+            make.top.equalTo(imageview.snp.bottom)
+            make.width.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }

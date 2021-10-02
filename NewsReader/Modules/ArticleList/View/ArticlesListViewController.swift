@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
@@ -79,12 +80,9 @@ class ArticleListNewsController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func setupConstraints(){
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     func configureTitle(title : String) {
