@@ -5,6 +5,7 @@
 //  Created by Domagoj Bunoza on 25.08.2021..
 //
 import UIKit
+import Kingfisher
 
 class CustomCellView: UITableViewCell {
     
@@ -17,23 +18,40 @@ class CustomCellView: UITableViewCell {
     let title : UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.numberOfLines = 0
+        title.numberOfLines = 1
         return title
+    }()
+    
+    let articleDescription : UILabel = {
+        let description = UILabel()
+        description.translatesAutoresizingMaskIntoConstraints = false
+        description.numberOfLines = 2
+        return description
     }()
     
     let stackview: UIStackView = {
         let stackview = UIStackView()
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .horizontal
-        stackview.alignment = .leading
-        stackview.spacing = 5
+        stackview.spacing = 15
         return stackview
+    }()
+    
+    let textContent: UIStackView = {
+        let textContent = UIStackView()
+        textContent.translatesAutoresizingMaskIntoConstraints = false
+        textContent.axis = .vertical
+        textContent.alignment = .center
+        textContent.distribution = .fillEqually
+        return textContent
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        textContent.addArrangedSubview(title)
+        textContent.addArrangedSubview(articleDescription)
         stackview.addArrangedSubview(image)
-        stackview.addArrangedSubview(title)
+        stackview.addArrangedSubview(textContent)
         contentView.addSubview(stackview)
         setupConstraints()
     }
@@ -44,17 +62,16 @@ class CustomCellView: UITableViewCell {
     
     func configure(with article: Article) {
         title.attributedText = NSAttributedString(string: article.title, attributes: [.font : UIFont.boldSystemFont(ofSize: 17)])
-        image.downloaded(from: article.urlToImage)
+        articleDescription.attributedText = NSAttributedString(string: article.description, attributes: [.font : UIFont.systemFont(ofSize: 15), .foregroundColor : UIColor.gray])
+        image.setImageFromUrl(url: article.urlToImage)
     }
 
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-           stackview.topAnchor.constraint(equalTo: contentView.topAnchor),
-           stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-           stackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-           stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            image.heightAnchor.constraint(equalToConstant: 100),
-            image.widthAnchor.constraint(equalTo: image.heightAnchor)
-        ])
+        image.snp.makeConstraints { make in
+            make.size.equalTo(100)
+        }
+        stackview.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20))
+        }
     }
 }

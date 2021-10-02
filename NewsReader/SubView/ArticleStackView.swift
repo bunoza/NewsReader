@@ -29,7 +29,7 @@ class ArticleStackView: UIView {
         stackview.axis = .vertical
         stackview.distribution = .fill
         stackview.alignment = .leading
-        stackview.spacing = 5
+        stackview.spacing = 10
         return stackview
     }()
     
@@ -58,11 +58,8 @@ class ArticleStackView: UIView {
     }
     
     func setupConstraints(){
-        NSLayoutConstraint.activate([
-            stackview.topAnchor.constraint(equalTo: self.topAnchor),
-            stackview.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            stackview.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20),
-            stackview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-        ])
+        stackview.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10))
+        }
     }
 }
